@@ -25,13 +25,13 @@ public:
     
     T at(const int& i) 
     {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         return this->ref().at(i);        
     }
     
     void push_back(const T& t)
     {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         this->ref().push_back(t);
     }
     
@@ -42,19 +42,19 @@ public:
     }    
     
     bool empty() {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         return this->ref().empty();
     }
 
     typename vector<T>::iterator begin()
     {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         return this->ref().begin();
     }
 
     typename vector<T>::iterator end()
     {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         return this->ref().end();
     }    
     
@@ -67,7 +67,7 @@ public:
 
     void clear()
     {
-        ScopeGuard<ofxThreadSafeVector> s(*this);
+        ScopeGuard<ofxThreadSafeVector<T> > s(*this);
         this->ref().clear();
     }
     
@@ -75,7 +75,7 @@ public:
 
 template<class T, class BoolFunction>
 void threadSafeRemove(ofxThreadSafeVector<T>& values, BoolFunction shouldErase) {
-    ScopeGuard<ofxThreadSafeVector<T> > g(values);
+    //ScopeGuard<ofxThreadSafeVector<T> > g(values);
 	values.erase(remove_if(values.begin(), values.end(), shouldErase), values.end());
 }
 
