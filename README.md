@@ -1,6 +1,6 @@
 # ofxThreadSafeVector
 
-Yet another concurrent stl vector without boost or TBB.
+Yet another concurrency-safe stl vector without boost or TBB.
 All at/push_back/begin/end/erase/clear/size/empty functions are concurrency-safe.
 threadSafeRemove() is concurrent ofRemove().
 
